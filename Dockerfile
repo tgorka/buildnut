@@ -42,6 +42,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		yarn \
 	&& rm -rf /var/lib/apt/lists/*
 
+# aws ecs-cli
+RUN curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
+        && chmod +x /usr/local/bin/ecs-cli
+
 # docker client
 RUN set -x && VER="17.09.0-ce" \
         && curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz \
