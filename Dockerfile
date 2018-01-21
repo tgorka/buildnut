@@ -33,6 +33,9 @@ RUN curl -sL -o /tmp/setup_8.x.sh https://deb.nodesource.com/setup_8.x \
         && chmod +x /tmp/setup_8.x.sh \
         && /tmp/setup_8.x.sh \
         && apt-get install -y --no-install-recommends nodejs
+	
+# node global npms
+RUN npm install -g serverless
 
 # python, pip, aws, yarn
 RUN apt-get update && apt-get install -y --no-install-recommends \
