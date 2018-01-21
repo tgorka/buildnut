@@ -29,12 +29,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 # node 8.x
-RUN curl -sL -o /tmp/setup_8.x.sh https://deb.nodesource.com/setup_8.x \
-        && chmod +x /tmp/setup_8.x.sh \
-        && /tmp/setup_8.x.sh \
+RUN curl -sL -o /tmp/setup_9.x.sh https://deb.nodesource.com/setup_9.x \
+        && chmod +x /tmp/setup_9.x.sh \
+        && /tmp/setup_9.x.sh \
         && apt-get install -y --no-install-recommends nodejs
 	
-# node global npms
+# node global npms: serverless
 RUN npm install -g serverless
 
 # python, pip, aws, yarn
