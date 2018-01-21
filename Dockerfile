@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		procps \
 	&& rm -rf /var/lib/apt/lists/*
 
-# node 8.x
+# node 9.x
 RUN curl -sL -o /tmp/setup_9.x.sh https://deb.nodesource.com/setup_9.x \
         && chmod +x /tmp/setup_9.x.sh \
         && /tmp/setup_9.x.sh \
