@@ -37,10 +37,12 @@ RUN curl -sL -o /tmp/setup_9.x.sh https://deb.nodesource.com/setup_9.x \
         && /tmp/setup_9.x.sh \
         && apt-get install -y --no-install-recommends nodejs
 	
-# node global npms: serverless
+# node global npms: serverless, graphql, yarn, typescript, ts-node
 RUN npm install -g serverless
 RUN npm install -g graphql-cli
 RUN npm install -g yarn
+RUN npm install -g typescript
+RUN npm install -g ts-node
 
 # python, pip, aws, yarn
 RUN apt-get update && apt-get install -y --no-install-recommends \
