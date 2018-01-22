@@ -1,5 +1,8 @@
 FROM ubuntu:artful
 
+# remove useless package
+RUN apt-get remove -y cmdtest
+
 # curl, wget, https
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
@@ -40,7 +43,6 @@ RUN npm install -g graphql-cli
 RUN npm install -g yarn
 
 # python, pip, aws, yarn
-RUN apt-get remove cmdtest
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		python-pip \
 		python-setuptools \
