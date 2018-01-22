@@ -43,6 +43,7 @@ RUN npm install -g graphql-cli
 RUN npm install -g yarn
 RUN npm install -g typescript
 RUN npm install -g ts-node
+RUN npm install -g webpack
 
 # python, pip, aws, yarn
 RUN apt-get update && apt-get install -y --no-install-recommends \
