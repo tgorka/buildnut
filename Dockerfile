@@ -1,7 +1,5 @@
 FROM ubuntu:artful
 
-# remove useless package
-RUN apt-get remove -y cmdtest
 
 # curl, wget, https
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -37,6 +35,9 @@ RUN curl -sL -o /tmp/setup_9.x.sh https://deb.nodesource.com/setup_9.x \
         && /tmp/setup_9.x.sh \
         && apt-get install -y --no-install-recommends nodejs
 	
+# remove useless package
+RUN apt-get remove -y cmdtest
+
 # node global npms: serverless, graphql, yarn, typescript, ts-node
 RUN npm install -g serverless
 RUN npm install -g graphql-cli
