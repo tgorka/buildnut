@@ -37,6 +37,7 @@ RUN curl -sL -o /tmp/setup_9.x.sh https://deb.nodesource.com/setup_9.x \
 # node global npms: serverless
 RUN npm install -g serverless
 RUN npm install -g graphql-cli
+RUN npm install -g yarn
 
 # python, pip, aws, yarn
 RUN apt-get remove cmdtest
@@ -44,7 +45,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		python-pip \
 		python-setuptools \
 		awscli \
-		yarn \
 	&& rm -rf /var/lib/apt/lists/*
 
 # aws ecs-cli
