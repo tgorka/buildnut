@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		git \
 		openssh-client \
 		build-essential \
+		autoconf \
 		procps \
 	&& rm -rf /var/lib/apt/lists/*
 
