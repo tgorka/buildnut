@@ -61,11 +61,11 @@ RUN set -x && VER="17.09.0-ce" \
         && tar -xz -C /tmp -f /tmp/docker-$VER.tgz \
         && mv /tmp/docker/* /usr/bin
 
-# browser: firefox
+# browser: firefox, chromium
 RUN apt-get update && apt-get install -y --no-install-recommends \
         firefox \
         chromium-browser \
-        chromium-codecs-ffmpeg \
-        chromium-codecs-ffmpeg-extra \
+        #chromium-codecs-ffmpeg \
+        #chromium-codecs-ffmpeg-extra \
         flashplugin-installer \
 	&& rm -rf /var/lib/apt/lists/*
