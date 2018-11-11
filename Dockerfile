@@ -64,8 +64,8 @@ RUN set -x && VER="17.09.0-ce" \
 # browser: firefox, chromium
 RUN apt-get update && apt-get install -y --no-install-recommends \
         firefox \
-        chromium-browser \
+        #chromium-browser \
         #chromium-codecs-ffmpeg \
         #chromium-codecs-ffmpeg-extra \
-        flashplugin-installer \
+        #flashplugin-installer \
 	&& rm -rf /var/lib/apt/lists/*
