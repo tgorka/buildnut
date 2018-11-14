@@ -1,3 +1,4 @@
-#FROM tgorka/buildnut:latest
+FROM tgorka/buildnut:ui
+
 
 

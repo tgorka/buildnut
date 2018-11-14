@@ -22,5 +22,6 @@ docker container ls --all
 
 ## Execute Docker image
 #docker run -it tgorka/buildnut
+#docker run --env DISPLAY=$DISPLAY tgorka/buildnut firefox
 #docker run -d -p 4000:80 tgorka/buildnut
 #docker stop tgorka:buildnut

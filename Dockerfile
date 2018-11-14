@@ -1,4 +1,4 @@
-FROM ubuntu:artful
+FROM ubuntu:cosmic
 
 
 # curl, wget, https
@@ -27,10 +27,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		procps \
 	&& rm -rf /var/lib/apt/lists/*
 
-# node 9.x
-RUN curl -sL -o /tmp/setup_9.x.sh https://deb.nodesource.com/setup_9.x \
-        && chmod +x /tmp/setup_9.x.sh \
-        && /tmp/setup_9.x.sh \
+# node 11.x
+RUN curl -sL -o /tmp/setup_11.x.sh https://deb.nodesource.com/setup_11.x \
+        && chmod +x /tmp/setup_11.x.sh \
+        && /tmp/setup_11.x.sh \
         && apt-get install -y --no-install-recommends nodejs
 	
 # remove useless package
@@ -56,7 +56,7 @@ RUN curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-c
         && chmod +x /usr/local/bin/ecs-cli
 
 # docker client
-RUN set -x && VER="17.09.0-ce" \
+RUN set -x && VER="18.09.0" \
         && curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz \
         && tar -xz -C /tmp -f /tmp/docker-$VER.tgz \
         && mv /tmp/docker/* /usr/bin
@@ -69,3 +69,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         #chromium-codecs-ffmpeg-extra \
         #flashplugin-installer \
 	&& rm -rf /var/lib/apt/lists/*
+
+
+# use non-root user nut of the gorup build
+#RUN groupadd -g 999 build && \
+#    useradd -r -u 999 -g build nut
+#USER nut
+
+# Make port 80 available to the world outside this container
+#EXPOSE 80
+
+# Define environment variable
+ENV DOCKER_NAME buildnut
+ENV DOCKER_SUBNAME latest
+
+# noninteractive do not ask questions if he could. Default value is newt
+ENV DEBIAN_FRONTEND noninteractive
+
+# Run default app when the container start
+#CMD ["python", "app.py"]
