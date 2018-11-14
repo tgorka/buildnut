@@ -72,9 +72,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 # use non-root user nut of the gorup build
-#RUN groupadd -g 999 build && \
-#    useradd -r -u 999 -g build nut
-#USER nut
+RUN groupadd -g 999 build && \
+    useradd -r -u 999 -g build nut
+USER nut
 
 # Make port 80 available to the world outside this container
 #EXPOSE 80

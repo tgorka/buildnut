@@ -6,7 +6,7 @@ ENV DOCKER_SUBNAME ui
 ENV DISPLAY host.docker.internal:0.0
 
 # browser: firefox, chromium
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN sudo apt-get update && apt-get install -y --no-install-recommends \
         firefox \
         #chromium-browser \
         #chromium-codecs-ffmpeg \
