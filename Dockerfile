@@ -45,7 +45,7 @@ RUN npm install -g ts-node
 RUN npm install -g webpack
 
 # python, pip, aws
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
 		python-pip \
 		python-setuptools \
 		awscli \
@@ -62,13 +62,13 @@ RUN set -x && VER="18.09.0" \
         && mv /tmp/docker/* /usr/bin
 
 # browser: firefox, chromium
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        firefox \
+#RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
+#        firefox \
         #chromium-browser \
         #chromium-codecs-ffmpeg \
         #chromium-codecs-ffmpeg-extra \
         #flashplugin-installer \
-	&& rm -rf /var/lib/apt/lists/*
+#	&& rm -rf /var/lib/apt/lists/*
 
 
 # use non-root user nut of the gorup build
