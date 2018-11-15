@@ -1,6 +1,15 @@
 FROM ubuntu:cosmic
 
 
+# Define environment variable
+ENV DOCKER_NAME buildnut
+ENV DOCKER_SUBNAME latest
+
+# noninteractive do not ask questions if he could. Default value is newt
+ENV DEBIAN_FRONTEND noninteractive
+ENV TZ 'Europe/London'
+RUN echo $TZ > /etc/timezone
+
 # curl, wget, https
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
@@ -45,7 +54,7 @@ RUN npm install -g ts-node
 RUN npm install -g webpack
 
 # python, pip, aws
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
 		python-pip \
 		python-setuptools \
 		awscli \
@@ -78,13 +87,6 @@ USER nut
 
 # Make port 80 available to the world outside this container
 #EXPOSE 80
-
-# Define environment variable
-ENV DOCKER_NAME buildnut
-ENV DOCKER_SUBNAME latest
-
-# noninteractive do not ask questions if he could. Default value is newt
-ENV DEBIAN_FRONTEND noninteractive
 
 # Run default app when the container start
 #CMD ["python", "app.py"]
