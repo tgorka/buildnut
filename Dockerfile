@@ -81,8 +81,11 @@ RUN set -x && VER="18.09.0" \
 
 
 # use non-root user nut of the gorup build
-RUN groupadd -g 999 build && \
-    useradd -r -u 999 --disabled-password --gecos '' -g build nut
+RUN groupadd -g 999 build
+# && \
+   # useradd -r -u 999 --disabled-password --gecos '' -g build nut
+RUN adduser --disabled-password --gecos '' nut
+RUN usermod -aG build nut
 
 # install sudo
 RUN apt-get update && apt-get install -y --no-install-recommends \
