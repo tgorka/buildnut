@@ -83,6 +83,15 @@ RUN set -x && VER="18.09.0" \
 # use non-root user nut of the gorup build
 RUN groupadd -g 999 build && \
     useradd -r -u 999 -g build nut
+
+# install sudo
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		sudo \
+	&& rm -rf /var/lib/apt/lists/*
+
+# add nut to sudo group
+RUN usermod -aG sudo nut
+
 USER nut
 
 # Make port 80 available to the world outside this container
