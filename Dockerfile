@@ -59,6 +59,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		python-setuptools \
 		awscli \
 	&& rm -rf /var/lib/apt/lists/*
+	
+# jdk
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		default-jdk \
+	&& rm -rf /var/lib/apt/lists/*
 
 # aws ecs-cli
 RUN curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest \
@@ -70,22 +75,11 @@ RUN set -x && VER="18.09.0" \
         && tar -xz -C /tmp -f /tmp/docker-$VER.tgz \
         && mv /tmp/docker/* /usr/bin
 
-# browser: firefox, chromium
-#RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
-#        firefox \
-        #chromium-browser \
-        #chromium-codecs-ffmpeg \
-        #chromium-codecs-ffmpeg-extra \
-        #flashplugin-installer \
-#	&& rm -rf /var/lib/apt/lists/*
-
-
 # use non-root user nut of the gorup build
-RUN groupadd -g 999 build
-# && \
-   # useradd -r -u 999 --disabled-password --gecos '' -g build nut
-RUN adduser --disabled-password --gecos '' nut
-RUN usermod -aG build nut
+RUN groupadd -g 999 build && \
+    useradd -r -u 999 -g build nut
+#RUN adduser --disabled-password --gecos '' nut
+#RUN usermod -aG build nut
 
 # install sudo
 RUN apt-get update && apt-get install -y --no-install-recommends \
