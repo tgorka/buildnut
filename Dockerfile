@@ -38,11 +38,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # node 11.x
 RUN set -x && VER="11.x" \
-	&& curl -sL -o /tmp/setup_$VER.sh https://deb.nodesource.com/setup_$VER \
+        && curl -sL -o /tmp/setup_$VER.sh https://deb.nodesource.com/setup_$VER \
         && chmod +x /tmp/setup_$VER.sh \
         && /tmp/setup_$VER.sh \
         && apt-get install -y --no-install-recommends nodejs \
-	&& unset VER
+        && unset VER
 	
 # remove useless package
 RUN apt-get remove -y cmdtest
@@ -80,7 +80,7 @@ RUN set -x && VER="18.09.0" \
 
 # use non-root user nut of the gorup build
 RUN groupadd -g 999 build && \
-    useradd -r -u 999 -g build nut
+    useradd -r --create-home -u 999 -g build nut
 #RUN adduser --disabled-password --gecos '' nut
 #RUN usermod -aG build nut
 
@@ -93,8 +93,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN usermod -aG sudo nut
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-
+# set current user
 USER nut
+WORKDIR /home/nut
 
 # Make port 80 available to the world outside this container
 #EXPOSE 80
