@@ -37,10 +37,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 # node 11.x
-RUN curl -sL -o /tmp/setup_11.x.sh https://deb.nodesource.com/setup_11.x \
-        && chmod +x /tmp/setup_11.x.sh \
-        && /tmp/setup_11.x.sh \
-        && apt-get install -y --no-install-recommends nodejs
+RUN set -x && VER="11.x" \
+	&& curl -sL -o /tmp/setup_$VER.sh https://deb.nodesource.com/setup_$VER \
+        && chmod +x /tmp/setup_$VER.sh \
+        && /tmp/setup_$VER.sh \
+        && apt-get install -y --no-install-recommends nodejs \
+	&& unset VER
 	
 # remove useless package
 RUN apt-get remove -y cmdtest
@@ -73,7 +75,8 @@ RUN curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-c
 RUN set -x && VER="18.09.0" \
         && curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz \
         && tar -xz -C /tmp -f /tmp/docker-$VER.tgz \
-        && mv /tmp/docker/* /usr/bin
+        && mv /tmp/docker/* /usr/bin \
+	&& unset VER
 
 # use non-root user nut of the gorup build
 RUN groupadd -g 999 build && \
