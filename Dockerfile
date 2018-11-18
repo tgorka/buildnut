@@ -57,10 +57,15 @@ RUN npm install -g webpack
 
 # python, pip, aws
 RUN apt-get update && apt-get install -y --no-install-recommends \
+		python3.7 \
 		python-pip \
+		python3-pip \
 		python-setuptools \
+		python3-setuptools \
 		awscli \
 	&& rm -rf /var/lib/apt/lists/*
+# python3 as default
+RUN echo `alias python=pyhon3\nalias pip=pip3` | tee /etc/profile.d/alias_python.sh
 	
 # jdk
 RUN apt-get update && apt-get install -y --no-install-recommends \
