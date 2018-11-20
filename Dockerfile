@@ -10,11 +10,12 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TZ 'Europe/London'
 RUN echo $TZ > /etc/timezone
 
-# curl, wget, https
+# linux tools: curl, wget, https, rsnc
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
 		wget \
+		rsync \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN set -ex; \
