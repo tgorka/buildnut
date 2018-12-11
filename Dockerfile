@@ -10,6 +10,9 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TZ 'Europe/London'
 RUN echo $TZ > /etc/timezone
 
+# use /etc/profile as non-login shell
+ENV ENV="/etc/profile"
+
 # linux tools: curl, wget, https, rsnc
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
