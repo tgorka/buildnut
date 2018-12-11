@@ -69,7 +69,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		awscli \
 	&& rm -rf /var/lib/apt/lists/*
 # python3 as default
-RUN printf 'alias python=pyhon3\nalias pip=pip3' | tee /etc/profile.d/alias_python.sh
+RUN printf 'alias python=python3\nalias pip=pip3' | tee /etc/profile.d/alias_python.sh
 	
 # jdk
 RUN apt-get update && apt-get install -y --no-install-recommends \
