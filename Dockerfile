@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN echo "[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'" >> /etc/zsh/zprofile
 # use /etc/profile as non-login shell
 ENV ENV="/etc/profile"
+# use zsh in the shell env
+ENV SHELL="/etc/zsh"
 # use zsh in next docker RUN commands
 SHELL ["/bin/zsh", "--login", "-c"]
 
