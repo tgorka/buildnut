@@ -19,7 +19,9 @@ RUN echo "[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'" >> /etc/zsh/
 # use /etc/profile as non-login shell
 ENV ENV="/etc/profile"
 # use zsh in the shell env
-ENV SHELL="/etc/zsh"
+ENV SHELL="/bin/zsh"
+# change default shell to zsh
+RUN chsh -s /bin/zsh
 # use zsh in next docker RUN commands
 SHELL ["/bin/zsh", "--login", "-c"]
 
