@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		zsh \
 	&& rm -rf /var/lib/apt/lists/*
 # update sourcing /etc/profile in zsh
-RUN echo "[[ -e /etc/.profile ]] && emulate sh -c 'source /etc/.profile'" >> /etc/zsh/zprofile
+RUN echo "[[ -e /etc/profile ]] && emulate sh -c 'source /etc/profile'" >> /etc/zsh/zprofile
 RUN echo "[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'" >> /etc/zsh/zprofile
 # use /etc/profile as non-login shell
 ENV ENV="/etc/profile"
