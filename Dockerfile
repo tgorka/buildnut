@@ -12,7 +12,7 @@ RUN echo $TZ > /etc/timezone
 
 # install and set zsh as default shell
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		zsh
+		zsh \
 	&& rm -rf /var/lib/apt/lists/*
 SHELL ["/bin/zsh", "--login", "-c"]
 # use /etc/profile as non-login shell
