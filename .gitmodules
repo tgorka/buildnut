@@ -1,0 +1,3 @@
+[submodule "devnut"]
+	path = devnut
+	url = https://github.com/tgorka/devnut.git

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/buildnut.iml" filepath="$PROJECT_DIR$/buildnut.iml" />
+      <module fileurl="file://$PROJECT_DIR$/devnut/devnut.iml" filepath="$PROJECT_DIR$/devnut/devnut.iml" />
     </modules>
   </component>
 </project>
