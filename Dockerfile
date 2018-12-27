@@ -100,10 +100,6 @@ RUN set -x && VER="18.09.0" \
         && mv /tmp/docker/* /usr/bin \
         && unset VER
 
-
-# set hostname
-RUN hostname nut
-
 # use non-root user nut of the gorup build
 RUN groupadd -g 999 nut && \
     useradd -r --create-home -u 999 -g nut build
