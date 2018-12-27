@@ -1,4 +1,0 @@
-FROM tgorka/buildnut:ui
-
-
-
