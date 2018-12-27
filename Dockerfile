@@ -100,9 +100,13 @@ RUN set -x && VER="18.09.0" \
         && mv /tmp/docker/* /usr/bin \
         && unset VER
 
+
+# set hostname
+RUN hostname nut
+
 # use non-root user nut of the gorup build
-RUN groupadd -g 999 build && \
-    useradd -r --create-home -u 999 -g build nut
+RUN groupadd -g 999 nut && \
+    useradd -r --create-home -u 999 -g nut build
 #RUN adduser --disabled-password --gecos '' nut
 #RUN usermod -aG build nut
 
@@ -112,12 +116,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 # add nut to sudo group
-RUN usermod -aG sudo nut
+RUN usermod -aG sudo build
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # set current user
-USER nut
-WORKDIR /home/nut
+USER build
+WORKDIR /home/build
+
+# set subname as the tag
+ENV DOCKER_SUBNAME build
 
 # Make port 80 available to the world outside this container
 #EXPOSE 80
